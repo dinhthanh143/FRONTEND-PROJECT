@@ -7,7 +7,7 @@ let passwordInput = document.getElementById("password");
 let confirmInput = document.getElementById("password_confirm");
 let inputs = document.getElementsByTagName("input");
 let registering = true
-if(localStorage.project_isLoggedIn === null){
+if(localStorage.project_isLoggedIn !== true){
   window.location.href = "./login.html";
 }
 form.addEventListener("submit", function (event) {
