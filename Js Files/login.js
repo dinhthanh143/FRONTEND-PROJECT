@@ -30,6 +30,7 @@ let emailCheck = validateEmail(email, password);
   if (!isValid){
     return
   }else{
+    localStorage.setItem("project_isLoggedIn", "true")
     window.location.href = "./dashboard.html"
   }
 });

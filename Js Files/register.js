@@ -1,13 +1,15 @@
 let form = document.getElementsByTagName("form")[0];
 let validations = document.getElementsByClassName("validation");
 let datas = JSON.parse(localStorage.getItem("project_users")) || []
-
 let nameInput = document.getElementById("name");
 let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
 let confirmInput = document.getElementById("password_confirm");
 let inputs = document.getElementsByTagName("input");
 let registering = true
+if(localStorage.project_isLoggedIn === null){
+  window.location.href = "./login.html";
+}
 form.addEventListener("submit", function (event) {
   refresh();
   event.preventDefault();
@@ -48,8 +50,18 @@ form.addEventListener("submit", function (event) {
     validations[2].classList.remove("validation_hide");
     passwordInput.classList.add("invalid_border");
     validations[2].textContent = "Mật khẩu Không Được Để Trống";
+  }else if(password.length <8){
+    isValid = false;
+    validations[2].classList.remove("validation_hide");
+    passwordInput.classList.add("invalid_border");
+    validations[2].textContent = "Mật khẩu phải có ít nhất 8 ký tự";
   }
-  if (confirm === "" || confirm != password) {
+  if (confirm === "" ) {
+    isValid = false;
+    validations[3].classList.remove("validation_hide");
+    confirmInput.classList.add("invalid_border");
+    validations[3].textContent = "Xác nhận mật khẩu không được để trống";
+  }else if(confirm != password){
     isValid = false;
     validations[3].classList.remove("validation_hide");
     confirmInput.classList.add("invalid_border");
