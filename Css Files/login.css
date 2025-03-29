@@ -1,0 +1,97 @@
+body{
+    display: flex;
+    justify-content: center;
+    justify-content: center ;
+    font-family: "Poppins", sans-serif;
+    color: #090914;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 105px;
+    align-items: center;
+    
+}
+label{
+    font-size: 18px;
+    line-height: 30px;
+    align-self: flex-start;
+    margin-left: 30px;
+}
+
+h1{
+    line-height: 62px;
+    font-size: 52px;
+    letter-spacing: -2px;
+    
+    font-weight: 600px;
+    font-style: normal;
+}
+#emailLabel{
+    margin-top: 51px;
+}
+form{
+    display: flex;
+    box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    flex-direction: column;
+    border: 0px solid #E4E4E7;
+    width: 533px;
+    height: 484px;
+    margin-bottom: 200px;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    text-align: center;
+    border-radius: 9px;
+    font-size: 16px;
+    line-height: 26px;
+    width: 472px;
+    height: 65px;
+   border: 1px solid #E4E4E7;
+   
+}
+button{
+    width: 472px;
+    height: 65px;
+    background-color: #0D6EFD;
+    border-radius: 9px;
+    line-height: 28px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    margin-top: 45px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+a{
+    color: #0D6EFD;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: 600;
+    margin-bottom: 23px;
+    cursor: pointer;
+
+}
+button:hover{
+    transition: 1s linear;
+    transform: scale(1.02);
+}
+span{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 16px;
+    color: red;
+}
+.invalid_border{
+    border-color: red !important;
+}
+.validation_show{
+    visibility: static;
+}
+.validation_hide{
+    visibility: hidden;
+}
