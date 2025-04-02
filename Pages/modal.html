@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="../Css Files/modal.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
+        <section class="fixAddModal">
+            <div class="modalTitle">
+                <p>Thêm/Sửa dự án</p>
+                x
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="modalContent">
+                <div class="container">
+                  <label for="taskName">Tên dự án</label>
+                <input type="text" id="taskName">
+                <span class="modalInvalid">Ten khong hop le</span>
+                <label for="description">Description</label>
+                <textarea name id="Description"></textarea>  
+                </div>
+            </div>
+            <div class="modalOptions">
+                <div class="container">
+                 <button class="cancel">Huỷ</button>
+                <button class="save">Lưu</button>   
+                </div>
+                
+            </div>
+        </section>
+
+        <script src="../Js Files/modal.js"></script>
+    </body>
+</html>

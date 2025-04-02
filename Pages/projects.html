@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&family=Bebas+Neue&family=Epilogue:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href>
+        <link rel="stylesheet" href="../Css Files/projects.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="overlay" id="overlay"></div>
+        <header>
+            <span>Quản Lý Dự Án</span>
+            <nav>
+                <ul>
+                    <li>Dự Án</li>
+                    <li id="myTasks">Nhiệm Vụ Của Tôi</li>
+                    <li id="logOut">Đăng Xuất</li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="container">
+                    <div class="headTitleContainer">
+                        <span class="headTitle">Quản lý nhiệm vụ</span>
+                    </div>
+
+                    <div class="options">
+                        <select name id="filter">
+                            <option value selected hidden disabled>Sắp xếp
+                                theo </option>
+
+                            <option value="all">Tất cả</option>
+                            <option value="completed">Hoàn thành</option>
+                            <option value="pending">Chưa hoàn thành</option>
+                        </select>
+
+                        <input type="text" class="search"
+                            placeholder="Tìm kiếm nhiệm vụ">
+                    </div>
+                </div>
+            </section>
+
+            <section class="infoTable">
+                <h2>Danh Sách Nhiệm Vụ</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col1">Tên Nhiệm Vụ</th>
+                            <th class="col2">Độ Ưu Tiên</th>
+                            <th class="col3">Trạng Thái</th>
+                            <th class="col4">Ngày Bắt Đầu</th>
+                            <th class="col5">Hạn Chót</th>
+                            <th class="col6">Tiến độ</th>
+                           
+                        </tr>
+                    </thead>
+                </table>
+                <details open>
+                    <table class="project1">
+                        <tr>
+                            <summary><strong>Xây dựng website thương mại điện tử</strong></summary>
+                        </tr>
+                        
+                            <td class="col1">Soạn thảo đề cương dự án</td>
+                            <td class="col2"><span class="low">Thap</span></td>
+                            <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
+                            <td class="col4">02-24</td>
+                            <td class="col5">02-27</td>
+                            <td class="col6"><span class="risk">Co rui ro</span></td>
+                        </tr>
+                    </tr>
+                        
+                    <td class="col1">Soạn thảo đề cương dự án</td>
+                    <td class="col2"><span class="high">Cao</span></td>
+                    <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
+                    <td class="col4">02-24</td>
+                    <td class="col5">02-27</td>
+                    <td class="col6"><span class="behind">Tre han</span></td>
+                </tr>
+            </tr>
+                        
+            <td class="col1">Soạn thảo đề cương dự án</td>
+            <td class="col2"><span class="medium">Trung binh</span></td>
+            <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
+            <td class="col4">02-24</td>
+            <td class="col5">02-27</td>
+            <td class="col6"><span class="noRisk">Dung tien do</span></td>
+        </tr>
+                    </table>
+                </details>
+                <details open>
+                    <table class="project2">
+                        <tr>
+                            <summary><strong>Xây dựng website thương mại điện tử</strong></summary>
+                        </tr>
+                        
+                            <td class="col1">Phát triển ứng dụng di động</td>
+                            <td class="col2"><span class="medium">Trung binh</span></td>
+                            <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
+                            <td class="col4">02-24</td>
+                            <td class="col5">02-27</td>
+                            <td class="col6"><span class="noRisk">Dung tien do</span></td>
+                        </tr>
+                    </table>
+                </details>
+            </details>
+            <details>
+                <table class="project3">
+                    <tr>
+                        <summary><strong>Quản lý dữ liệu khách hàng</strong></summary>
+                    </tr>
+                    
+                        <td class="col1">Phát triển ứng dụng di động</td>
+                        <td class="col2"><span class="medium">Trung binh</span></td>
+                        <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
+                        <td class="col4">02-24</td>
+                        <td class="col5">02-27</td>
+                        <td class="col6"><span class="noRisk">Dung tien do</span></td>
+                    </tr>
+                </table>
+            </details>
+         
+            </section>
+            
+
+    
+    
+        </main>
+        <footer>
+            © 2025 Team management. All rights reserved.
+        </footer>
+        <script src="../Js Files/projects.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

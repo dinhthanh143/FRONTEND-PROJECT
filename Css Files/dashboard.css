@@ -1,3 +1,327 @@
 *{
     font-family: "Roboto", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+header{
+    background-color: #212529 ;
+    color: white;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 56px;
+   
+}
+header span{
+    font-size: 19.74px;
+    line-height: 30px;
+}
+header ul{
+    width: 1151px;
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+}
+header ul li{
+    cursor: pointer;
+    font-size: 15.61px;
+    line-height: 24px;
+    list-style: none;
+    margin-top: 16px;
+}
+header ul li:nth-of-type(2){
+    color: #ffffff;
+    opacity: 0.55
+}
+.container{
+    margin-top: 24px;
+    border-radius: 6px;
+    border: 1px solid #DEE2E6;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.1);
+    width:1296px ;
+    height: 679px;
+    padding: 25px !important;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+footer{
+    background-color: #212529 ;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+}
+main h1{
+    color: #212529;
+    font-size: 23.59px;
+    line-height: 28.8px;
+    font-weight: medium;
+}
+main h2{
+    font-weight: medium;
+    color: #212529;
+    font-size: 19.77px;
+    line-height: 24px;
+}
+.options{
+    margin-top: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+.options button{
+    cursor: pointer;
+    background-color: #0D6EFD;
+    color: #ffffff;
+    width: 150px;
+    height: 38px;
+    font-size: 15.76px;
+    line-height: 24px;
+    border: none;
+    border-radius: 6px;
+}
+.options input{
+    border: 2px solid #DEE2E6;
+    width: 433px;
+    height: 38px;
+    border-radius: 6px;
+    font-size: 15.73px;
+    line-height: 26px;
+    color: #A9A9A9;
+    padding-left: 13px;
+}
+table{
+    margin-top: 8px;
+    width: 100%;
+    max-height: 474px;
+    color: #212529;
+    border-collapse: collapse !important;
+    border: 1px solid #DEE2E6;
+    border-spacing: 0;
+}
+td{
+    border-bottom: 1px solid #edeff1 !important;
+}
+.tHead{
+    font-weight: bolder;
+    line-height: 24px;
+    background-color: #212529;
+    color: #FFFFFF;
+    height: 41px;
+   
+}
+.td1{
+    text-align: center;
+    width: 91px;
+}
+.td2{
+    padding-left: 8.5px;
+    width: 927px;
+    border-right: 3px solid #8c8d8d75;
+    border-left: 3px solid #8c8d8d75;
+}
+.td3{
+    text-align: center;
+}
+
+.normalRow{
+    height: 48px;
+}
+.fix{
+    background-color: #FFC107;
+    border-radius: 4px;
+    height: 31px;
+    border: none;
+    width: 61px;
+}
+.del{
+    background-color: #DC3545;
+    border-radius: 4px;
+    height: 31px;
+    border: none;
+    width: 41px;
+    color: #ffffff;
+    margin-left: 5px;
+}
+.detail{
+    background-color: #0D6EFD;
+    border-radius: 4px;
+    color: #ffffff;
+    height: 31px;
+    border: none;
+    width: 61px;
+    margin-left: 5px;
+}
+.search{
+    color: #212529 !important;
+}
+/* them sua modal */
+
+
+.fixAddModal{
+    display: none !important;
+position: fixed;
+top: 33px;
+   left: 530px;
+   background-color: white !important;
+   width: 480px;
+   height: 378px;
+   display: flex;
+   flex-direction: column;
+   border-radius: 8px;
+   z-index: 1000 !important;
+ 
+}
+.fixAddModal div{
+    padding: 0px 16px;
+    background-color: white !important;
+}
+.modalTitle{
+    height: 63px;
+    padding-left: 20px !important;
+    padding-top: 25px !important;
+    padding-right: 20px !important;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modalTitle p{
+    padding: 0px;
+    color: #212529;
+    background-color: white !important;
+    line-height: 10px;
+    font-weight: 600;
+    font-size: 24px;
+}
+.modalTitle i{
+    color: #818181;
+    font-size: 24px;
+    background-color: white !important;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.modalContent{
+    border-top: 1px solid rgba(63, 67, 80, 0.16);
+    border-bottom: 1px solid rgba(63, 67, 80, 0.16);
+    display: flex;
+    flex-direction: column;
+    height: 238px;
+    
+    align-items: center;
+}
+
+.modalContent .container{
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    width: 432px;
+    height: 202px;  
+   border: none;
+    box-shadow: none !important;
+}
+.modalContent label{
+    background-color: white !important;
+    font-size: 16;
+    line-height: 20px;
+    color: #344054;
+    font-weight: medium;
+}
+.modalContent label:nth-of-type(2){
+    margin-top: 5px;
+}
+.modalInvalid{
+    background-color: white !important;
+    font-size: 12px;
+    display: none ;
+    color: #DC3545;
+}
+.modalContent input{
+   padding: 0px 10px;
+    border: 2px solid rgba(63, 67, 80, 0.16);
+    border-radius: 8px;
+    min-height: 44px;
+    background-color: white !important;
+}
+.modalContent textarea{
+    padding: 0px 10px;
+    border-radius: 8px;
+    min-height: 88px;
+    border: 2px solid rgba(63, 67, 80, 0.16);
+    background-color: white !important;
+}
+.modalOptions button{
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 24px;
+    height: 37px;
+    width: 58px;
+    border: none;
+    border-radius: 8px;
+}
+.modalOptions .save{
+background-color: #0D6EFD;;
+}
+.saveFix{
+    background-color: #0D6EFD;;
+}
+.modalOptions .cancel{
+    background-color: #6C757D;
+}
+.modalOptions .optionsContainer{
+    margin-top: 30px;
+    margin-left: 290px;
+    width: 165px;
+   display: flex;
+  justify-content: space-between;
+}
+
+
+/* modal delete */
+.modalDelete{
+    display: none !important;
+    height: 230px;
+}
+.modalDelete .deleteTask{
+    background-color: #DC3545;
+}
+.delete_content{
+
+    border-top: 1px solid rgba(63, 67, 80, 0.16);
+    border-bottom: 1px solid rgba(63, 67, 80, 0.16);
+    display: flex;
+    flex-direction: column;
+    min-height: 85px;
+    justify-content: center;
+    padding-left:20px !important;
+}
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    display: none;
+    z-index: 9; 
+}
+.modal_show{
+    display: flex !important;
+}
+.overlayToggle{
+    display: block;
+}
+.border_invalid{
+    border-color: #DC3545 !important;
 }

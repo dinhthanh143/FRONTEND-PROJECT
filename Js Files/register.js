@@ -10,6 +10,7 @@ let registering = true
 if(localStorage.project_isLoggedIn === null){
   window.location.href = "./login.html";
 }
+
 form.addEventListener("submit", function (event) {
   refresh();
   event.preventDefault();
@@ -93,4 +94,8 @@ function refresh() {
     };
   });
 }
-
+function toLoginPage() {
+  setTimeout(function() {
+    window.location.href = "./login.html"
+      }, 300);
+}

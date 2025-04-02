@@ -31,7 +31,10 @@ let emailCheck = validateEmail(email, password);
     return
   }else{
     localStorage.setItem("project_isLoggedIn", "true")
-    window.location.href = "./dashboard.html"
+    setTimeout(function() {
+  window.location.href = "./dashboard.html"
+    }, 800);
+    
   }
 });
 
@@ -66,4 +69,9 @@ function validateEmail(email, password) {
         validations[0].textContent = "Email không tồn tại hoặc chưa Đăng ký";
         return false
   }
+}
+function toRegisterPage() {
+  setTimeout(function() {
+    window.location.href = "./register.html"
+      }, 300);
 }
