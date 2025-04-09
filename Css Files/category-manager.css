@@ -50,18 +50,18 @@ main{
 .container{
     margin-top: 24px;
     width: 1296px;
-    border-radius: none;
     display: flex;
     flex-wrap: wrap;
 }
 .contentInfos{
     width: 50%;
     max-height: 197px;
+   word-wrap: break-word;
 }
 .container h1{
     font-size: 23.54px;
     line-height: 28.8px;
-    font-weight: medium;
+    font-weight: 500;
 }
 .container p{
     margin-top: 16px;
@@ -118,6 +118,7 @@ background-color: #ffffff;
 .memberContainer{
     height: 48px;
     max-width: 200px;
+    min-width: 150px;
     display: flex;
     gap: 8px;
     align-items: center;
@@ -133,8 +134,9 @@ background-color: #ffffff;
 }.memberRole{
     opacity: 50%;
 }
-.pfp{
-    background-color: #8A2BE2;
+.userPfp{
+    /* border: 2px solid #344054 !important; */
+    background-color: rgb(3, 179, 255);
     width: 40px;
     height: 40px;
     border: none;
@@ -142,7 +144,6 @@ background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
 }
 .more{
     cursor: pointer;
@@ -153,6 +154,11 @@ background-color: #ffffff;
     width: 40px;
     height: 42px;
     border-radius: 32px;
+    transition: background-color 0.6s ease;
+    /* display: flex; */
+}
+.more:hover{
+    background-color:#afb1b3 ;
 }
 .more i{
     scale: 1.3;
@@ -320,13 +326,36 @@ summary{
     color: #ffffff;
     margin-left: 15px;
 }
+#toHome{
+    cursor: pointer;
+}
+.navList li:hover{
+    color: #ffffff;
+    opacity: 0.55
+}
+button{
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
 button:hover{
-    transition: 0.5s linear;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 /* modal them tvien*/
+.memberListContainer{
+    display: flex;
+    gap: 30px;
+}
 .addMemberModal{
     display: none !important;
+}
+.fa-trash-can{
+    cursor: pointer;
+}
+.addMemberModal input{
+    padding-left: 10px !important;
+}
+.addMemberModal label:nth-of-type(2){
+    margin-top: 18px !important;
 }
 .addMemberOptions{
     margin-top: 40px !important;
@@ -457,7 +486,7 @@ background-color: #0D6EFD;;
 .fixTaskContentContainer{
     border-top: 1px solid rgba(63, 67, 80, 0.16);
     border-bottom: 1px solid rgba(63, 67, 80, 0.16);
-    overflow-y: auto;
+   overflow-y: auto;
    padding: 0 !important;
     padding-left: 5px !important;
 }
@@ -498,6 +527,9 @@ background-color: #0D6EFD;;
 /* memeberlist */
 .memberListModal{
     display: none !important;
+}
+.memberListRole{
+    text-align: center;
 }
 .memberListModal{
     height: auto !important;
@@ -543,6 +575,7 @@ border: none !important;
 }
 .memberNameModal{
     font-size: 16px;
+    text-align: left;
 }
 .memberRoleModal{
     font-size: 14px;
@@ -564,6 +597,7 @@ border: none !important;
     margin-top: 20px !important;
     margin-left: 400px !important;
 }
+
 
 /* modal xoa */
 .modalDelete{

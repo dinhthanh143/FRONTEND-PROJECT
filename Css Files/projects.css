@@ -110,7 +110,9 @@ border-radius: 4px;
 border: 2px solid #6C757D;
 background-color: #ffffff;
 }
-
+#toHome{
+    cursor: pointer;
+}
 .options{
     display: flex;
     gap: 16px;
@@ -149,6 +151,7 @@ background-color: #ffffff;
     box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.2);
     width: 1296px;
     margin-bottom: 95px;
+    min-height: 345px;
 }
 .infoTable h2{
     font-size: 19.72px;
@@ -191,6 +194,10 @@ td{
     height: 48px;
     border: 1px solid #d4dadd !important;
     vertical-align: middle;
+}
+.navList li:hover{
+    color: #ffffff;
+    opacity: 0.55
 }
 summary{
     height: 48px;
@@ -409,7 +416,42 @@ background-color: #0D6EFD;;
    display: flex;
   justify-content: space-between;
 }
+.fa-pen-to-square{
+    color: #0d6dfdbe;
+}
+/* management modal */
+.modalDelete{
+    display: none;
+    height: 230px;
+}
+.modalDelete .deleteTask{
+    background-color: #DC3545;
 
+}
+.modalOptions{
+    display: flex;
+    justify-content: end;
+    padding-top: 30px !important;
+}
+.confirmContainer{
+    display: flex;
+    gap: 15px;
+    width: 200px !important;
+}
+.confirmBtn{
+    background-color: #0D6EFD;
+    width: 100px !important;
+}
+.delete_content{
+
+    border-top: 1px solid rgba(63, 67, 80, 0.16);
+    border-bottom: 1px solid rgba(63, 67, 80, 0.16);
+    display: flex;
+    flex-direction: column;
+    min-height: 85px;
+    justify-content: center;
+    padding-left:20px !important;
+}
 .overlay{
     position: fixed;
     top: 0;
@@ -429,4 +471,20 @@ background-color: #0D6EFD;;
 .border_invalid{    
     border-color: #DC3545 !important;
 }
-
+i{
+    cursor: pointer;
+}
+.unfixable{
+    color: #999898;
+    cursor: not-allowed;
+}
+.fixable{
+ transition: translate 0.3s ease, box-shadow 0.4s ease;
+}
+.fixable:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+i{
+    background: transparent;
+}

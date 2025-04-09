@@ -28,13 +28,42 @@ let emailCheck = validateEmail(email, password);
     isValid = false;
   }
   if (!isValid){
+      Swal.fire({
+        icon: "error",
+        title: "Lỗi",
+        text: "Đăng Nhập Không Thành Công",
+        footer: 'Mời Kiểm tra Lại Thông Tin',
+        confirmButtonText: 'Đóng',
+        customClass: {
+          confirmButton: 'customClose'
+        }
+      });
     return
   }else{
+    localStorage.setItem("project_currentUser", JSON.stringify(email));
     localStorage.setItem("project_isLoggedIn", "true")
-    setTimeout(function() {
-  window.location.href = "./dashboard.html"
-    }, 800);
-    
+    Swal.fire({
+      title: "Đăng Nhập Thành Công ✅",
+      html: "Đang chuyển hướng tới trang chính sau <b></b> giây...",
+      timer: 5000,
+      timerProgressBar: false,
+      confirmButtonText: 'Bỏ Qua',
+      customClass: {
+        confirmButton: 'customClose'
+      },
+      didOpen: () => {
+        const timer = Swal.getPopup().querySelector("b");
+        timerInterval = setInterval(() => {
+          const secondsLeft = Math.ceil(Swal.getTimerLeft() / 1000);
+          timer.textContent = `${secondsLeft}`;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+        window.location.href = "./dashboard.html";
+      }
+    });
+
   }
 });
 
@@ -74,4 +103,14 @@ function toRegisterPage() {
   setTimeout(function() {
     window.location.href = "./register.html"
       }, 300);
+}
+let togglePassword = document.getElementById("togglePassword")
+togglePassword.onclick = function(){
+  if(passwordInput.type ==="password"){
+    passwordInput.setAttribute("type","text")
+    togglePassword.classList.replace("fa-eye", "fa-eye-slash")
+  }else{
+    passwordInput.setAttribute("type","password")
+    togglePassword.classList.replace("fa-eye-slash", "fa-eye")
+  }
 }

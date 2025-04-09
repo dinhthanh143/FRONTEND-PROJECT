@@ -34,6 +34,10 @@ header ul li:nth-of-type(2){
     color: #ffffff;
     opacity: 0.55
 }
+.navList li:hover{
+    color: #ffffff;
+    opacity: 0.55
+}
 .container{
     margin-top: 24px;
     border-radius: 6px;
@@ -276,6 +280,16 @@ background-color: #0D6EFD;;
 .saveFix{
     background-color: #0D6EFD;;
 }
+#toHome{
+    cursor: pointer;
+}
+button{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
 .modalOptions .cancel{
     background-color: #6C757D;
 }
@@ -286,7 +300,6 @@ background-color: #0D6EFD;;
    display: flex;
   justify-content: space-between;
 }
-
 
 /* modal delete */
 .modalDelete{
@@ -325,3 +338,30 @@ background-color: #0D6EFD;;
 .border_invalid{
     border-color: #DC3545 !important;
 }
+.activePage{
+    color: red !important;
+}
+.pagination .page-item {
+    display: inline-block;
+    margin: 0 4px;
+  }
+.pagination .page-link {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #ddd;
+  }
+.pagination .page-link:hover {
+    background-color: #007bff;
+    color: white;
+  }
+.pagination .activePage {
+    background-color: #007bff;
+    color: white !important;
+    font-weight: bold;
+    border: 1px solid #007bff;
+  }

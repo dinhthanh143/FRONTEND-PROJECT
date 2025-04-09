@@ -19,9 +19,9 @@
     <body>
         <div class="overlay" id="overlay"></div>
         <header>
-            <span>Quản Lý Dự Án</span>
+            <span id="toHome">Quản Lý Dự Án</span>
             <nav>
-                <ul>
+                <ul class="navList">
                     <li>Dự Án</li>
                     <li id="myTasks">Nhiệm Vụ Của Tôi</li>
                     <li id="logOut">Đăng Xuất</li>
@@ -33,15 +33,14 @@
                     <div class="headTitleContainer">
                         <span class="headTitle">Quản lý nhiệm vụ</span>
                     </div>
-
                     <div class="options">
                         <select name id="filter">
                             <option value selected hidden disabled>Sắp xếp
                                 theo </option>
-
-                            <option value="all">Tất cả</option>
-                            <option value="completed">Hoàn thành</option>
-                            <option value="pending">Chưa hoàn thành</option>
+                                <option value="priorityUp">Độ ưu tiên &uarr;</i></option>
+                                <option value="priorityDown">Độ ưu tiên &darr;</option>
+                                <option value="nearDueDate">Gần hạn chót </option>
+                                <option value="farDueDate">Xa hạn chót </option>
                         </select>
 
                         <input type="text" class="search"
@@ -51,90 +50,45 @@
             </section>
 
             <section class="infoTable">
-                <h2>Danh Sách Nhiệm Vụ</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="col1">Tên Nhiệm Vụ</th>
-                            <th class="col2">Độ Ưu Tiên</th>
-                            <th class="col3">Trạng Thái</th>
-                            <th class="col4">Ngày Bắt Đầu</th>
-                            <th class="col5">Hạn Chót</th>
-                            <th class="col6">Tiến độ</th>
-                           
-                        </tr>
-                    </thead>
-                </table>
-                <details open>
-                    <table class="project1">
-                        <tr>
-                            <summary><strong>Xây dựng website thương mại điện tử</strong></summary>
-                        </tr>
-                        
-                            <td class="col1">Soạn thảo đề cương dự án</td>
-                            <td class="col2"><span class="low">Thap</span></td>
-                            <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
-                            <td class="col4">02-24</td>
-                            <td class="col5">02-27</td>
-                            <td class="col6"><span class="risk">Co rui ro</span></td>
-                        </tr>
-                    </tr>
-                        
-                    <td class="col1">Soạn thảo đề cương dự án</td>
-                    <td class="col2"><span class="high">Cao</span></td>
-                    <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
-                    <td class="col4">02-24</td>
-                    <td class="col5">02-27</td>
-                    <td class="col6"><span class="behind">Tre han</span></td>
-                </tr>
-            </tr>
-                        
-            <td class="col1">Soạn thảo đề cương dự án</td>
-            <td class="col2"><span class="medium">Trung binh</span></td>
-            <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
-            <td class="col4">02-24</td>
-            <td class="col5">02-27</td>
-            <td class="col6"><span class="noRisk">Dung tien do</span></td>
-        </tr>
-                    </table>
-                </details>
-                <details open>
-                    <table class="project2">
-                        <tr>
-                            <summary><strong>Xây dựng website thương mại điện tử</strong></summary>
-                        </tr>
-                        
-                            <td class="col1">Phát triển ứng dụng di động</td>
-                            <td class="col2"><span class="medium">Trung binh</span></td>
-                            <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
-                            <td class="col4">02-24</td>
-                            <td class="col5">02-27</td>
-                            <td class="col6"><span class="noRisk">Dung tien do</span></td>
-                        </tr>
-                    </table>
-                </details>
-            </details>
-            <details>
-                <table class="project3">
-                    <tr>
-                        <summary><strong>Quản lý dữ liệu khách hàng</strong></summary>
-                    </tr>
-                    
-                        <td class="col1">Phát triển ứng dụng di động</td>
-                        <td class="col2"><span class="medium">Trung binh</span></td>
-                        <td class="col3">In Progress <i class="fa-solid fa-pen-to-square"></i></td>
-                        <td class="col4">02-24</td>
-                        <td class="col5">02-27</td>
-                        <td class="col6"><span class="noRisk">Dung tien do</span></td>
-                    </tr>
-                </table>
-            </details>
-         
             </section>
-            
-
-    
-    
+            <!-- modal -->
+            <section class="fixAddModal modalDelete confirmModal">
+                <div class="modalTitle">
+                    <p>Cập nhật trạng thái</p>
+                    <i class="fa-solid fa-xmark" id="fa-xmark2"></i>
+                </div>
+                <div class="delete_content">
+                    <p>Xác nhận cập nhật trạng thái nhiệm vụ</p>
+                </div>
+                <div class="modalOptions">
+                    <div class="confirmContainer">
+                        <button class="cancel confirmCancel">Huỷ</button>
+                        <button class="confirmBtn">Xác nhận</button>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="paginitionContainer">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                href="#">1</a></li>
+                        <li class="page-item"><a class="page-link"
+                                href="#">2</a></li>
+                        <li class="page-item"><a class="page-link"
+                                href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </section> -->
         </main>
         <footer>
             © 2025 Team management. All rights reserved.

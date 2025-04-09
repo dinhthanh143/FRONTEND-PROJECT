@@ -7,10 +7,6 @@ let passwordInput = document.getElementById("password");
 let confirmInput = document.getElementById("password_confirm");
 let inputs = document.getElementsByTagName("input");
 let registering = true
-if(localStorage.project_isLoggedIn === null){
-  window.location.href = "./login.html";
-}
-
 form.addEventListener("submit", function (event) {
   refresh();
   event.preventDefault();
@@ -68,21 +64,50 @@ form.addEventListener("submit", function (event) {
     confirmInput.classList.add("invalid_border");
     validations[3].textContent = "Yêu cầu xác nhận lại mật khẩu";
   }
-  if (!isValid) return;
+  if (!isValid){
+    Swal.fire({
+      icon: "error",
+      title: "Lỗi",
+      text: "Đăng Ký Không Thành Công",
+      footer: 'Mời Kiểm tra Lại Thông Tin',
+      confirmButtonText: 'Đóng',
+      customClass: {
+        confirmButton: 'customClose'
+      }
+    });
+  
+    return
+  };
   if(registering){
     datas.push({ id, fullName, email, password });
   }
     registering = false
-  form.innerHTML = `<h1 class="success">Đăng Ký Thành Công ✅</h1>
-<button id="toLogin">Đăng Nhập</button>`;
-  form.style.height = "350px";
-  let toLogin = document.getElementById("toLogin");
-  let title = document.getElementsByClassName("title")[0];
-  title.innerHTML = "";
-  toLogin.addEventListener("click", function () {
-    localStorage.setItem("project_users", JSON.stringify(datas));
-    window.location.href = "./login.html";
+//   form.innerHTML = `<h1 class="success">Đăng Ký Thành Công ✅</h1>
+// <button id="toLogin">Đến Đăng Nhập</button>`;
+//   form.style.height = "350px";
+  // let toLogin = document.getElementById("toLogin");
+  // let title = document.getElementsByClassName("title")[0];
+  // title.innerHTML = "";
+  Swal.fire({
+    title: "Đăng Ký Thành Công ✅",
+    html: "Chuyển hướng tới Đăng nhập sau <b></b>s.",
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      const timer = Swal.getPopup().querySelector("b");
+      timerInterval = setInterval(() => {
+        const secondsLeft = Math.ceil(Swal.getTimerLeft() / 1000);
+        timer.textContent = `${secondsLeft}`;
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+      localStorage.setItem("project_users", JSON.stringify(datas));
+      window.location.href = "./login.html";
+    }
   });
+  
   localStorage.setItem("project_users", JSON.stringify(datas));
 });
 
@@ -98,4 +123,24 @@ function toLoginPage() {
   setTimeout(function() {
     window.location.href = "./login.html"
       }, 300);
+}
+let togglePassword = document.getElementById("togglePassword")
+let togglePassword2 = document.getElementById("togglePassword2")
+togglePassword.onclick = function(){
+  if(passwordInput.type ==="password"){
+    passwordInput.setAttribute("type","text")
+    togglePassword.classList.replace("fa-eye", "fa-eye-slash")
+  }else{
+    passwordInput.setAttribute("type","password")
+    togglePassword.classList.replace("fa-eye-slash", "fa-eye")
+  }
+}
+togglePassword2.onclick = function(){
+  if(confirmInput.type ==="password"){
+    confirmInput.setAttribute("type","text")
+    togglePassword2.classList.replace("fa-eye", "fa-eye-slash")
+  }else{
+    confirmInput.setAttribute("type","password")
+    togglePassword2.classList.replace("fa-eye-slash", "fa-eye")
+  }
 }

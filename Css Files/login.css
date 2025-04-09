@@ -58,6 +58,17 @@ input{
    border: 1px solid #E4E4E7;
    
 }
+.passwordContainer{
+    position: relative;
+}
+#togglePassword{
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    right: 20px !important;
+    scale: 1.1;
+    color: #606062;
+}
 button{
     width: 472px;
     height: 65px;
@@ -85,7 +96,7 @@ button:hover{
     transition: 1s linear;
     transform: scale(1.02);
 }
-span{
+.validation{
     margin-top: 7px;
     margin-bottom: 7px;
     font-size: 16px;
@@ -100,4 +111,12 @@ span{
 }
 .validation_hide{
     visibility: hidden;
+}
+.swal2-icon {
+    display: flex;   
+justify-content: center;
+}
+.customClose{
+background-color: #0D6EFD;
+border-radius: 8px;
 }
