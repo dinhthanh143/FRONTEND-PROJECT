@@ -28,6 +28,8 @@ let tableContainer = document.querySelector(".infoTable");
 let pagination = document.querySelector(".pagination");
 let confirmModal = document.querySelector(".confirmModal")
 let confirmBtn = document.querySelector(".confirmBtn")
+let body = document.getElementsByTagName("body")[0]
+let darkModeBtn = document.querySelector(".fa-moon")
 let currentPage = 1;
 let itemsPerPage = 5;
 let ProjectIndex;
@@ -49,12 +51,12 @@ function displayAll(tasks) {
   <table>
             
               <tr>
-                <th class="col1">Tên Nhiệm Vụ</th>
-                <th class="col2">Độ Ưu Tiên</th>
-                <th class="col3">Trạng Thái</th>
-                <th class="col4">Ngày Bắt Đầu</th>
-                <th class="col5">Hạn Chót</th>
-                <th class="col6">Tiến độ</th>
+                <th class="col1 titleTd">Tên Nhiệm Vụ</th>
+                <th class="col2 titleTd">Độ Ưu Tiên</th>
+                <th class="col3 titleTd">Trạng Thái</th>
+                <th class="col4 titleTd">Ngày Bắt Đầu</th>
+                <th class="col5 titleTd">Hạn Chót</th>
+                <th class="col6 titleTd">Tiến độ</th>
               </tr>
   `;
   project.forEach((element) => {
@@ -343,4 +345,27 @@ let personalProjects = []
 //   renderTable(page)
 //   renderPagination(Math.ceil(personalProjects.length / itemsPerPage)); // == totalPages
 //  }
+let darkModeToggle = JSON.parse(localStorage.getItem("darkModeToggle"))
+darkModeBtn.onclick = function(){
+  document.documentElement.classList.remove("dark-mode")
+  if(!darkModeToggle){
+    body.classList.add("dark-mode")
+    darkModeToggle = "dark"
+  }else if(darkModeToggle === "dark"){
+    body.classList.remove("dark-mode")
+    darkModeToggle = "light"
+  }else{
+    body.classList.add("dark-mode")
+    darkModeToggle = "dark"
+  }
+  localStorage.setItem("darkModeToggle", JSON.stringify(darkModeToggle))
+}
+darkModeCheck()
+function darkModeCheck(){
+  if(darkModeToggle === "dark"){
+    body.classList.add("dark-mode")
+  }else{
+    body.classList.remove("dark-mode")
+  }
+}
  

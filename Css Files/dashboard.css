@@ -11,7 +11,6 @@ header{
     align-items: center !important;
     justify-content: center !important;
     height: 56px;
-   
 }
 header span{
     font-size: 19.74px;
@@ -38,6 +37,10 @@ header ul li:nth-of-type(2){
     color: #ffffff;
     opacity: 0.55
 }
+nav{
+  display: flex;
+  align-items: center;
+}
 .container{
     margin-top: 24px;
     border-radius: 6px;
@@ -47,6 +50,19 @@ header ul li:nth-of-type(2){
     height: 679px;
     padding: 25px !important;
 }
+.user{
+  font-size: 10px;
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin-left: 30px !important;
+  cursor: pointer;
+}
+
 
 main{
     display: flex;
@@ -168,14 +184,33 @@ td{
 .search{
     color: #212529 !important;
 }
+@keyframes modalOpen{
+  from{
+    opacity: 0%;
+    transform: scale(0.8);
+  }
+  to{
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+@keyframes modalClose{
+  from{
+    opacity: 100%;
+    transform: scale(1);
+  }
+  to{
+    opacity: 0%;
+    transform: scale(0.8);
+  }
+}
 /* them sua modal */
-
-
 .fixAddModal{
     display: none !important;
 position: fixed;
 top: 33px;
-   left: 530px;
+left: 50%;
+transform: translateX(-50%);
    background-color: white !important;
    width: 480px;
    height: 378px;
@@ -237,7 +272,7 @@ top: 33px;
 .modalContent label{
     background-color: white !important;
     font-size: 16;
-    line-height: 20px;
+    line-height: 18px;
     color: #344054;
     font-weight: medium;
 }
@@ -365,3 +400,128 @@ button:hover{
     font-weight: bold;
     border: 1px solid #007bff;
   }
+  body, header, footer, main, h1, h2, input, td, .pagination .page-link {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  /* dark mode */
+  .dark-mode{
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode footer, .dark-mode header{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #f7971e;
+    color: #212529;
+  }
+  .dark-mode main{
+    background-color: #18181a ;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h1{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h2{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode input{
+    background-color: #202327fe;
+    border: 1px solid white;
+    color: #212529;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode input::placeholder {
+    color: white;
+  }
+  .dark-mode td{
+    background-color: #3b3d43;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .tdHead{
+    background-color: #f7971e !important;
+    color: #0b0b0c;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .pagination .page-link {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #48484c;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #48484c;
+  }
+  .dark-mode .pagination .activePage {
+    background-color: #f7971e;
+    color: #0b0b0c !important;
+    font-weight: bold;
+    border: 1px solid #f7971e;
+  }
+  .dark-mode .pagination .page-link:hover {
+    background-color: #f7971e;
+    color: #0b0b0c;
+  }
+  .dark-mode .fa-moon{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    color: #212529;
+  }
+  .dark-mode .taskNameInput{
+    border: 2px solid rgba(63, 67, 80, 0.16) ;
+  }
+  .dark-mode .search{
+    color: white !important;
+  }
+  .dark-mode .fixAddModal{
+    background-color: #f7971e !important; 
+    border: 2px solid #494747 !important;
+
+  }
+  .dark-mode .modalTitle, .dark-mode .modalOptions, .dark-mode .optionsContainer{
+    background-color: #f7971e !important; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .dark-mode .modalTitle p{
+    background-color: #f7971e !important; 
+  }
+  .dark-mode .fa-xmark{
+    color: white !important;
+    background: transparent !important;
+  }
+  .dark-mode .modalContent{
+    border: 1px solid #ff944d !important;
+    background-color: #494747 !important;
+  }
+  .dark-mode label{
+    background-color: #494747 !important;
+    color: white;
+  }
+  .dark-mode .modalContent .container{
+    background-color: #494747 !important;
+  }
+  .dark-mode .modalInvalid{
+    background-color: #494747 !important;
+    color: #ff4d4d ;
+  }
+  .dark-mode .taskNameInput {
+    color: white !important;
+    background-color: #666565 !important;
+    border: 2px solid #ff944d !important;
+  }
+  .dark-mode textarea {
+    color: white !important;
+    background-color: #666565 !important;
+    border: 2px solid #ff944d !important;
+  }
+  .dark-mode .border_invalid{
+    border: 2px solid #DC3545 !important;
+  }
+  .dark-mode .delete_content{
+    color: white !important;
+    border: 1px solid #ff944d !important;
+    background-color: #494747 !important;
+  }
+  
+ 

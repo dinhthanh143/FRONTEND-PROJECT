@@ -488,3 +488,90 @@ i{
 i{
     background: transparent;
 }
+body, header, footer, main, h1, h2,h3 ,input, td ,#filter,summary, .fa-moon, .infoTable, .titleTd, .headTitle {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+/* dark mode */
+.dark-mode{
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+.dark-mode footer, .dark-mode header{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #f7971e;
+    color: #212529;
+  }
+  .dark-mode td{
+    background-color: #3b3d43;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode input{
+    background-color: #202327fe;
+    border: 1px solid white;
+    color: white !important;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode input::placeholder {
+    color: white;
+  }
+  .dark-mode main{
+    background-color: #18181a ;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .headTitle{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h2{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h3{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode #filter{
+    background-color: #202327fe;
+    border: 1px solid white;
+    color: white !important;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode summary{
+    color: #f7971e;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .fa-moon{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    color: #212529;
+  }
+  .dark-mode .infoTable{
+    background-color: #272a2f;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .titleTd{
+    background-color: #f7971e !important;
+    color: #0b0b0c;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .fixAddModal{
+    background-color: #f7971e !important; 
+    border: 2px solid #494747 !important;
+
+  }
+  .dark-mode .modalTitle, .dark-mode .modalOptions, .dark-mode .confirmContainer{
+    background-color: #f7971e !important; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .dark-mode .modalTitle p{
+    background-color: #f7971e !important; 
+  }
+  .dark-mode .delete_content{
+    color: white !important;
+    border: 1px solid #ff944d !important;
+    background-color: #494747 !important;
+  }
+  .dark-mode .fa-xmark{
+    color: white !important;
+    background: transparent !important;
+  }

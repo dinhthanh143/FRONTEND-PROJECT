@@ -9,6 +9,7 @@ let logOut = document.querySelector("#logOut");
 logOut.onclick = function () {
   window.location.href = "../Pages/login.html";
 };
+// DOM
 let addFixBtn = document.querySelector(".addTask");
 let addFixTask = document.querySelector(".fixTask");
 let overlay = document.getElementById("overlay");
@@ -49,7 +50,10 @@ let fixBtn = document.getElementsByClassName("saveFix")[0];
 let details = document.getElementsByTagName("details");
 let memberListTable = document.querySelector(".memberListTable");
 let listSave = document.querySelector(".listSave");
+let body = document.getElementsByTagName("body")[0]
+let darkModeBtn = document.querySelector(".fa-moon")
 let dataIndex;
+// Key
 let choosenProject = JSON.parse(localStorage.getItem("SaveChoosenProject"));
 let tasks = JSON.parse(localStorage.getItem("Project-Tasks")) || [];
 let project = JSON.parse(localStorage.getItem("AllProjects")) || [];
@@ -58,6 +62,7 @@ let choosenProjectTitle = document.getElementById("choosenProjectTitle");
 let choosenProjectDesc = document.getElementById("choosenProjectDesc");
 let filter = document.getElementById("filter");
 let currentTasks = []
+let managingMembers = []
 
 let title = project.findIndex(
   (i) => i.id === choosenProject && i.user === currentUser
@@ -183,6 +188,12 @@ addFixBtn.onclick = function () {
       modalInvalid[2].classList.add("overlayToggle");
       taskNameInput[0].classList.add("border_invalid");
     }
+    // }else if (taskname.toLowerCase().includes("an")) {
+    //   isValid = false;
+    //   modalInvalid[2].textContent = "Tên Nhiệm Vụ Không Được Chứa An";
+    //   modalInvalid[2].classList.add("overlayToggle");
+    //   taskNameInput[0].classList.add("border_invalid");
+    // }
     let check = tasks.some((task) => {
       return (
         task.taskname?.trim().toLowerCase() === taskname.trim().toLowerCase() &&
@@ -219,6 +230,7 @@ let projectIndex = project.findIndex(function (i) {
   return i.id === choosenProject && i.user === currentUser
 });
 showMembersBtn.onclick = function () {
+  managingMembers = []
   let memberListRole = document.getElementsByClassName("memberListRole");
   for (let i = 0; i < project[projectIndex].members.length; i++) {
     memberListRole[i].classList.remove("border_invalid");
@@ -355,19 +367,31 @@ listSave.onclick = function () {
   let isValid = true;
   let memberListRole = document.getElementsByClassName("memberListRole");
   for (let i = 0; i < project[projectIndex].members.length; i++) {
-    if (memberListRole[i].value === "" || memberListRole[i].value.length > 15) {
+    if (memberListRole[i].value === "" || memberListRole[i].value.length > 13) {
       isValid = false;
       memberListRole[i].classList.add("border_invalid");
     } else {
       project[projectIndex].members[i].role = memberListRole[i].value;
     }
   }
-  if (!isValid) return;
+  if (!isValid) {
+    Swal.fire({
+      icon: "error",
+      title: "Lỗi",
+      text: "Vai trò không được trống hoặc hơn 13 kí tự",
+      confirmButtonText: 'Đóng',
+      customClass: {
+        confirmButton: 'customClose'
+      }
+    });
+    return
+  };
   displayMemberList();
   memberListModal.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
 };
 function deleteMember(index) {
+  managingMembers.push( project[projectIndex].members[index])
   project[projectIndex].members.splice(index, 1);
   if (project[projectIndex].members.length === 0) {
     memberListModal.classList.remove("modal_show");
@@ -375,6 +399,23 @@ function deleteMember(index) {
   }
   displayMemberList();
 }
+cancelMemberList.onclick = function () {
+  while (managingMembers.length > 0) {
+    project[projectIndex].members.push(managingMembers.pop());
+  }
+    displayMemberList();
+  memberListModal.classList.remove("modal_show");
+  overlay.classList.remove("overlayToggle");
+};
+closeMemberList.onclick = function () {
+  while (managingMembers.length > 0) {
+    project[projectIndex].members.push(managingMembers.pop());
+  }
+    displayMemberList();
+  memberListModal.classList.remove("modal_show");
+  overlay.classList.remove("overlayToggle");
+};
+
 function resetInputs() {
   modalInvalid[8].classList.remove("overlayToggle");
   taskProgress[0].classList.remove("border_invalid");
@@ -426,6 +467,8 @@ cancelFixAdd.onclick = function () {
   taskStatusInput[0].value = "";
 };
 addMemberBtn.onclick = function () {
+  memberEmailInput.value =""
+  memberRoleInput.value=""
   addMemberModal.classList.add("modal_show");
   overlay.classList.add("overlayToggle");
 };
@@ -453,15 +496,6 @@ cancelDelete.onclick = function () {
   modalDelete.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
 };
-cancelMemberList.onclick = function () {
-  memberListModal.classList.remove("modal_show");
-  overlay.classList.remove("overlayToggle");
-};
-closeMemberList.onclick = function () {
-  memberListModal.classList.remove("modal_show");
-  overlay.classList.remove("overlayToggle");
-};
-
 //chuc nang display
 displayAll();
 function displayAll() {
@@ -985,3 +1019,26 @@ taskNameInput[0].addEventListener("focus", function () {
   modalInvalid[2].classList.remove("overlayToggle");
   taskNameInput[0].classList.remove("border_invalid");
 });
+let darkModeToggle = JSON.parse(localStorage.getItem("darkModeToggle"))
+darkModeBtn.onclick = function(){
+  document.documentElement.classList.remove("dark-mode")
+  if(!darkModeToggle){
+    body.classList.add("dark-mode")
+    darkModeToggle = "dark"
+  }else if(darkModeToggle === "dark"){
+    body.classList.remove("dark-mode")
+    darkModeToggle = "light"
+  }else{
+    body.classList.add("dark-mode")
+    darkModeToggle = "dark"
+  }
+  localStorage.setItem("darkModeToggle", JSON.stringify(darkModeToggle))
+}
+darkModeCheck()
+function darkModeCheck(){
+  if(darkModeToggle === "dark"){
+    body.classList.add("dark-mode")
+  }else{
+    body.classList.remove("dark-mode")
+  }
+}

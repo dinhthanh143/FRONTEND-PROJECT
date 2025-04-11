@@ -116,7 +116,7 @@ background-color: #ffffff;
     color: #212529;
 }
 .memberContainer{
-    height: 48px;
+    min-height: 48px;
     max-width: 200px;
     min-width: 150px;
     display: flex;
@@ -133,6 +133,7 @@ background-color: #ffffff;
     font-weight: 500;
 }.memberRole{
     opacity: 50%;
+    word-wrap: break-word;
 }
 .userPfp{
     /* border: 2px solid #344054 !important; */
@@ -350,6 +351,10 @@ button:hover{
 }
 .fa-trash-can{
     cursor: pointer;
+    transition: color 0.5s ease;
+}
+.fa-trash-can:hover{
+    color: #b61a29;
 }
 .addMemberModal input{
     padding-left: 10px !important;
@@ -364,7 +369,8 @@ button:hover{
     display: none !important;
     position: fixed;
     top: 33px;
-   left: 530px;
+    left: 50%;
+    transform: translateX(-50%);
    background-color: white !important;
    width: 480px;
    height: 378px;
@@ -647,4 +653,224 @@ border: none !important;
 .border_invalid{    
     border-color: #DC3545 !important;
 }
+body, header, footer, main, h1, h2,h3 ,input, td, #choosenProjectDesc,
+ #filter,summary, .fa-moon, .infoTable, .addMember, .memberName,.memberRole, .titleTd {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+/* dark-mode */
+.dark-mode{
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+.dark-mode footer, .dark-mode header{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #f7971e;
+    color: #212529;
+  }
+  .dark-mode td{
+    background-color: #3b3d43;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode input{
+    background-color: #202327fe;
+    border: 1px solid white;
+    color: white !important;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode input::placeholder {
+    color: white;
+  }
+  .dark-mode main{
+    background-color: #18181a ;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h1{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h2{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode h3{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode #choosenProjectDesc{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode #filter{
+    background-color: #202327fe;
+    border: 1px solid white;
+    color: white !important;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode summary{
+    color: #f7971e;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .fa-moon{
+    transition: background-color 0.5s ease, color 0.5s ease;
+    color: #212529;
+  }
+  .dark-mode .infoTable{
+    background-color: #272a2f;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .addMember{
+    background-color: #0D6EFD;
+    border-color: #0D6EFD;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .memberName{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .memberRole{
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .titleTd{
+    background-color: #f7971e !important;
+    color: #0b0b0c;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .dark-mode .fixAddModal input{
+    color: #212529 !important;
+    border: 2px solid rgba(63, 67, 80, 0.16);
+  }
+  .dark-mode .memberListTable td{
+    background-color: white;
+  }
+  .dark-mode .memberInfoModal span{
+    color: #212529;
+  }
+ .dark-mode .Mlthead{
+    color: #212529;
+ }
+ .dark-mode .more:hover{
+    background-color: #ff6600 ;
+ }
+ .dark-mode .more{
+    background-color: #f7971e;
+ }
+ .dark-mode .memberListRole{
+    background-color: white;
+    color: #212529 !important;
+ }
+ 
+.customClose{
+    background-color: #0D6EFD;
+    border-radius: 8px;
+}
+.dark-mode .fixAddModal{
+    background-color: #f7971e !important; 
+    border: 2px solid #494747 !important;
 
+  }
+  .dark-mode .modalTitle, .dark-mode .optionsContainer{
+    background-color: #f7971e !important; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .dark-mode .modalOptions{
+    background-color: #f7971e !important; 
+  }
+  .dark-mode .modalTitle p{
+    background-color: #f7971e !important; 
+  }
+  .dark-mode .fa-xmark{
+    color: white !important;
+    background: transparent !important;
+  }
+  .dark-mode .modalContent{
+    border: 1px solid #ff944d !important;
+    background-color: #494747 !important;
+  }
+  .dark-mode label{
+    background-color: #494747 !important;
+    color: white;
+  }
+  .dark-mode .modalInvalid{
+    background-color: #494747 !important;
+    color: #ff4d4d ;
+  } 
+  
+   .dark-mode .fixTaskContentContainer .fixTaskContent{
+    background-color: #494747 !important;
+  }
+  .dark-mode .fixTaskContentContainer{
+    border: 1px solid #ff944d !important;
+    background-color: #494747 !important;
+  }
+  .dark-mode .fixTaskContent input{
+    color: white !important;
+    background-color: #666565 !important;
+    border: 2px solid #ff944d ;
+  }
+  .dark-mode .fixTaskContent select{
+    color: white !important;
+    background-color: #666565 !important;
+    border: 2px solid #ff944d ;
+  }
+ 
+  /* duong cuon */
+  .dark-mode ::-webkit-scrollbar { 
+    width: 8px;            
+    background-color: #666565;  
+  }
+  /* thanh cuon */
+  .dark-mode ::-webkit-scrollbar-thumb {
+    background-color: #ff9900;  
+    border-radius: 6px;
+    border: 1px solid #666565; 
+  }
+  .dark-mode .modalContent .container{
+    background-color: #494747 !important;
+  }
+  .dark-mode .modalContent .container input{
+    color: white !important;
+    background-color: #666565 !important;
+    border: 2px solid #ff944d !important;
+  }
+    .dark-mode .border_invalid{    
+        border-color: #DC3545 !important;
+    }
+.dark-mode .memberListContent {
+    background-color: #494747 !important;
+    border: 2px solid #ff944d !important;
+}
+.dark-mode .Mlthead{
+    background-color: #494747 !important;
+    color: white ;
+}
+.dark-mode .memberListTable td{
+    background-color: #494747 !important;
+}
+.dark-mode .memberListTable input{
+    color: white !important;
+    background-color: #666565 !important;
+    border: 2px solid #ff944d !important;
+}
+.dark-mode .Mlrow{
+    background-color: #494747 !important;
+    color: white !important;
+}
+.dark-mode .memberInfoModal{
+    background-color: #494747 !important;
+    color: white !important;
+}
+.dark-mode .memberInfoModal span{    
+    color: white !important;
+}
+.dark-mode .Mlrow img{
+    border: 2px solid #ff944d !important;
+
+}
+.dark-mode .delete_content{
+    color: white !important;
+    border: 1px solid #ff944d !important;
+    background-color: #494747 !important;
+  }

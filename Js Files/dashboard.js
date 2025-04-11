@@ -18,6 +18,8 @@ let fixProject = document.querySelector(".saveFix");
 let closeFixOnly = document.getElementById("cancel3");
 let cancelFixOnly = document.getElementsByClassName("fixOnlyCancel");
 let fixOnly = document.querySelector(".fixOnly");
+let darkModeBtn = document.querySelector(".fa-moon")
+let body = document.getElementsByTagName("body")[0]
 let dataIndex;
 let addFixInvalid = document.getElementsByClassName("addFixInvalid");
 let taskNameInput = document.getElementById("taskName");
@@ -43,11 +45,11 @@ if (!projectCheck && project_isLoggedIn === true) {
         {
           id: 2,
           name: "Thanh Fake",
-          role: "CEO",
+          role: "Manager",
           email: "ThanhFake@gmail.com",
         },
-        { id: 3, name: "Chung", role: "CEO", email: "Chung@gmail.com" },
-        { id: 3, name: "Viet", role: "CEO", email: "Viet@gmail.com" },
+        { id: 3, name: "Chung", role: "Janitor", email: "Chung@gmail.com" },
+        { id: 3, name: "Viet", role: "Coder", email: "Viet@gmail.com" },
       ],
       user: currentUser,
     },
@@ -55,7 +57,15 @@ if (!projectCheck && project_isLoggedIn === true) {
       id: 2,
       projectName: "Dự án B",
       description: "Mô tả dự án B",
-      members: [],
+      members: [
+        { id: 1, name: "Nam", role: "Designer", email: "Nam@gmail.com" },
+        {
+          id: 2,
+          name: "Linh",
+          role: "Manager",
+          email: "Linh@gmail.com",
+        },
+      ],
       user: currentUser,
     },
     {
@@ -222,13 +232,12 @@ if (
   tasks = tasks.concat(newTasks);
   localStorage.setItem("Project-Tasks", JSON.stringify(tasks));
 }
-let usedIds = [];
+let usedIds = JSON.parse(localStorage.getItem("usedIds")) || [1,2,3,4,5,6,7,8,9,10]
 function generateId() {
   let newId;
   do {
     newId = Math.floor(Math.random() * 1000) + 1;
   } while (usedIds.includes(newId));
-  usedIds.push(newId);
   return newId;
 }
 // let project = JSON.parse(localStorage.getItem("AllProjects"));
@@ -247,9 +256,9 @@ function displayList() {
 }
 function renderTable(page) {
   table.innerHTML = `  <tr class="tHead">
-                        <td class="td1">ID</td>
-                        <td class="td2">Tên Dự Án</td>
-                        <td class="td3">Hành Động</td>
+                        <td class="td1 tdHead">ID</td>
+                        <td class="td2 tdHead">Tên Dự Án</td>
+                        <td class="td3 tdHead">Hành Động</td>
                     </tr>`;
   let start = (page - 1) * itemsPerPage;
   let end = start + itemsPerPage;
@@ -390,6 +399,7 @@ function deleteTask(index) {
   activePage(currentPage);
 }
 function fix(index) {
+  let pIndex = project.findIndex(p => p.user === currentUser && p.id === index)
   let isValid = true;
   let projectName = newNameInput.value.trim();
   let description = newDescInput.value.trim();
@@ -407,8 +417,7 @@ function fix(index) {
   let check = project.some(function (item) {
     return (
       item.projectName.toLowerCase() === projectName.toLowerCase() &&
-      item.id !== project[index].id &&
-      item.user === currentUser
+      item.id !== project[pIndex].id && item.user === currentUser
     );
   });
   if (check) {
@@ -441,15 +450,6 @@ function fix(index) {
 }
 //phan tim kiem
 let searchByNameInput = document.querySelector(".search");
-// searchByNameInput.addEventListener("keypress", function (event) {
-//   if (event.key === "Enter") {
-//     if (searchByNameInput.value === "") {
-//       displayList();
-//     } else {
-//       searchByName(searchByNameInput.value);
-//     }
-//   }
-// });
 searchByNameInput.addEventListener("input", function (event) {
   if (searchByNameInput.value === "") {
     displayList();
@@ -511,6 +511,8 @@ saveProject.onclick = function () {
     addFixInvalid[1].classList.add("overlayToggle");
   }
   if (!isValid) return;
+  usedIds.push(id);
+  localStorage.setItem("usedIds", JSON.stringify(usedIds))
   let user = currentUser;
   let members = [];
   project.push({ id, projectName, description, user, members });
@@ -528,7 +530,7 @@ taskNameInput.onclick = () => {
   taskNameInput.classList.remove("border_invalid");
   addFixInvalid[0].textContent = "";
   addFixInvalid[0].classList.remove("overlayToggle");
-};
+}
 newNameInput.onclick = () => {
   newNameInput.classList.remove("border_invalid");
   fixInvalid[0].textContent = "";
@@ -594,3 +596,27 @@ let toHome = document.getElementById("toHome");
 toHome.onclick = function () {
   window.location.href = "../Pages/dashboard.html";
 };
+
+let darkModeToggle = JSON.parse(localStorage.getItem("darkModeToggle"))
+darkModeBtn.onclick = function(){
+  document.documentElement.classList.remove("dark-mode")
+  if(!darkModeToggle){
+    body.classList.add("dark-mode")
+    darkModeToggle = "dark"
+  }else if(darkModeToggle === "dark"){
+    body.classList.remove("dark-mode")
+    darkModeToggle = "light"
+  }else{
+    body.classList.add("dark-mode")
+    darkModeToggle = "dark"
+  }
+  localStorage.setItem("darkModeToggle", JSON.stringify(darkModeToggle))
+}
+darkModeCheck()
+function darkModeCheck(){
+  if(darkModeToggle === "dark"){
+    body.classList.add("dark-mode")
+  }else{
+    body.classList.remove("dark-mode")
+  }
+}

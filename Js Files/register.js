@@ -6,6 +6,7 @@ let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
 let confirmInput = document.getElementById("password_confirm");
 let inputs = document.getElementsByTagName("input");
+let container = document.querySelector(".container")
 let registering = true
 form.addEventListener("submit", function (event) {
   refresh();
@@ -82,16 +83,11 @@ form.addEventListener("submit", function (event) {
     datas.push({ id, fullName, email, password });
   }
     registering = false
-//   form.innerHTML = `<h1 class="success">Đăng Ký Thành Công ✅</h1>
-// <button id="toLogin">Đến Đăng Nhập</button>`;
-//   form.style.height = "350px";
-  // let toLogin = document.getElementById("toLogin");
-  // let title = document.getElementsByClassName("title")[0];
-  // title.innerHTML = "";
+    container.style.display = "none"
   Swal.fire({
     title: "Đăng Ký Thành Công ✅",
     html: "Chuyển hướng tới Đăng nhập sau <b></b>s.",
-    timer: 3000,
+    timer: 2500,
     timerProgressBar: true,
     didOpen: () => {
       Swal.showLoading();

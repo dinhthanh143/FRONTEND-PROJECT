@@ -120,3 +120,18 @@ justify-content: center;
 background-color: #0D6EFD;
 border-radius: 8px;
 }
+.savePasswordContainer{
+    height: 40px;
+    display: flex;
+    width: 88%;
+}
+#savePassword{
+    width: 15px;
+}
+#savePasswordLabel{
+    margin-top: 20px;
+    margin-right: 20px;
+    line-height: 150%;
+    font-size: 15px;
+    margin-left: 10px;
+}
