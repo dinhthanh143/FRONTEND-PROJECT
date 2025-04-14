@@ -267,7 +267,7 @@ function displayList() {
   renderTable(currentPage);
   renderPagination(totalPages);
   localStorage.setItem("AllProjects", JSON.stringify(project));
-  // localStorage.setItem("usedIds", JSON.stringify(usedIds))
+  localStorage.setItem("usedIds", JSON.stringify(usedIds))
 }
 function renderTable(page) {
   table.innerHTML = `  <tr class="tHead">
@@ -554,7 +554,7 @@ saveProject.onclick = function () {
     addFixInvalid[1].classList.add("overlayToggle");
   }
   if (!isValid) return;
-  usedIds.push(id);
+  usedIds.push({id: id, user:currentUser});
   localStorage.setItem("usedIds", JSON.stringify(usedIds))
   let user = currentUser;
   let members = [];
