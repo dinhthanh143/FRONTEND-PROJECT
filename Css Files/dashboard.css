@@ -206,9 +206,6 @@ td {
   background-color: #0D6EFD;
   border-radius: 8px;
 }
-.swal2-container {
- 
-}
 /* them sua modal */
 .fixAddModal {
   display: none !important;
@@ -536,3 +533,13 @@ td,
   border: 1px solid #ff944d !important;
   background-color: #494747 !important;
 }
+html, body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+}
+footer{
+  position: absolute;
+  width: 100%;
+}
+
