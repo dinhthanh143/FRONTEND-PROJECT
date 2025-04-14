@@ -29,9 +29,13 @@ header ul li {
   list-style: none;
   margin-top: 16px;
 }
-header ul li:nth-of-type(2) {
+header ul li:nth-of-type(3) {
   color: #ffffff;
   opacity: 0.55;
+}
+.user:hover {
+  color: #ffffff;
+  opacity: 1 !important;
 }
 .navList li:hover {
   color: #ffffff;
@@ -50,18 +54,7 @@ nav {
   height: 679px;
   padding: 25px !important;
 }
-.user {
-  font-size: 10px;
-  background-color: red;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  margin-left: 30px !important;
-  cursor: pointer;
-}
+
 
 main {
   display: flex;
@@ -533,5 +526,3 @@ td,
   border: 1px solid #ff944d !important;
   background-color: #494747 !important;
 }
-
-

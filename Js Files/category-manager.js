@@ -182,9 +182,9 @@ addFixBtn.onclick = function () {
       modalInvalid[2].textContent = "Tên Không Được Để Trống!";
       modalInvalid[2].classList.add("overlayToggle");
       taskNameInput[0].classList.add("border_invalid");
-    } else if (taskname.length > 30) {
+    } else if (taskname.length > 40) {
       isValid = false;
-      modalInvalid[2].textContent = "Tên Nhiệm Vụ Không Được Quá 30 Kí Tự";
+      modalInvalid[2].textContent = "Tên Nhiệm Vụ Không Được Quá 40 Kí Tự";
       modalInvalid[2].classList.add("overlayToggle");
       taskNameInput[0].classList.add("border_invalid");
     }
@@ -338,7 +338,7 @@ function displayMemberList() {
     memberList.innerHTML += ` <div class="memberContainer">
                             <span class="userPfp">${project[
                               projectIndex
-                            ].members[0].name.slice(0, 1)}</span>  
+                            ].members[0].name.slice(0, 2).toUpperCase()}</span>  
     <div class="memberInfo">
         <span class="memberName">${project[projectIndex].members[0].name}</span>
         <span class="memberRole">${project[projectIndex].members[0].role}</span>
@@ -349,7 +349,7 @@ function displayMemberList() {
       memberList.innerHTML += ` <div class="memberContainer">
                             <span class="userPfp">${project[
                               projectIndex
-                            ].members[i].name.slice(0, 1)}</span>  
+                            ].members[i].name.slice(0, 2).toUpperCase()}</span>  
                             <div class="memberInfo">
                                 <span class="memberName">${
                                   project[projectIndex].members[i].name
@@ -374,7 +374,7 @@ function displayMemberList() {
                                 <div class="Mlrow">
                                     <span class="userPfp">${project[
                               projectIndex
-                            ].members[index].name.slice(0, 1)}</span> 
+                            ].members[index].name.slice(0, 2).toUpperCase()}</span> 
                                     <div class="memberInfoModal">
                                         <span class="memberNameModal">${member.name}</span>
                                         <span
@@ -437,9 +437,11 @@ listSave.onclick = function () {
 function deleteMember(index) {
   managingMembers.push(project[projectIndex].members[index]);
   project[projectIndex].members.splice(index, 1);
-  if (project[projectIndex].members.length === 0) {
-    memberListModal.classList.remove("modal_show");
-    overlay.classList.remove("overlayToggle");
+  if(project[projectIndex].members.length === 0){
+    memberListTable.innerHTML = `<tr>
+    <td class="Mlthead">Thành viên</td>
+    <td class="Mlthead">Vai trò</td>
+</tr>`;
   }
   displayMemberList();
 }
@@ -540,7 +542,7 @@ cancelDelete.onclick = function () {
   modalDelete.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
 };
-//chuc nang display
+//chuc nang display, fix, delete
 displayAll();
 function displayAll() {
   detailsDataCheck();
@@ -726,9 +728,9 @@ function fix(index) {
     modalInvalid[2].textContent = "Tên Không Được Để Trống!";
     modalInvalid[2].classList.add("overlayToggle");
     taskNameInput[0].classList.add("border_invalid");
-  } else if (taskname.length > 30) {
+  } else if (taskname.length > 40) {
     isValid = false;
-    modalInvalid[2].textContent = "Tên Nhiệm Vụ Không Được Quá 30 Kí Tự";
+    modalInvalid[2].textContent = "Tên Nhiệm Vụ Không Được Quá 40 Kí Tự";
     modalInvalid[2].classList.add("overlayToggle");
     taskNameInput[0].classList.add("border_invalid");
   }

@@ -31,8 +31,20 @@ let newNameInput = document.querySelector(".newTask");
 let newDescInput = document.querySelector(".newDesc");
 //keys
 let currentUser = JSON.parse(localStorage.getItem("project_currentUser"));
+let datas = JSON.parse(localStorage.getItem("project_users"));
 let project = JSON.parse(localStorage.getItem("AllProjects")) || [];
 let project_isLoggedIn = JSON.parse(localStorage.getItem("project_isLoggedIn"));
+// du lieu mau
+let user = document.querySelector(".user")
+let userNameIndex = datas.findIndex(data => data.email === currentUser)
+if(datas[userNameIndex].fullName.includes(" ")){
+  let shownName = datas[userNameIndex].fullName.split(" ").length
+  user.textContent = `Xin Chào, ${datas[userNameIndex].fullName.split(" ")[shownName-1]}!`
+  user.setAttribute("title", currentUser)
+}else{
+  user.textContent = `Xin Chào, ${datas[userNameIndex].fullName}!`
+  user.setAttribute("title", currentUser)
+}
 
 let projectCheck = project.some(function (project) {
   return project.user === currentUser;
@@ -512,7 +524,7 @@ function searchByName(name) {
   activePage(currentPage);
   localStorage.setItem("usedIds", JSON.stringify(usedIds))
 }
-//add btn
+//add project
 saveProject.onclick = function () {
   let isValid = true;
   let id = generateId();
