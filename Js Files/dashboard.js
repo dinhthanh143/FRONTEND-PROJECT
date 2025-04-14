@@ -33,7 +33,7 @@ let newDescInput = document.querySelector(".newDesc");
 let currentUser = JSON.parse(localStorage.getItem("project_currentUser"));
 let project = JSON.parse(localStorage.getItem("AllProjects")) || [];
 let project_isLoggedIn = JSON.parse(localStorage.getItem("project_isLoggedIn"));
-let usedIds
+
 let projectCheck = project.some(function (project) {
   return project.user === currentUser;
 });
@@ -154,7 +154,10 @@ if (!projectCheck && project_isLoggedIn === true) {
       user: currentUser,
     },
   ]);
-   usedIds = JSON.parse(localStorage.getItem("usedIds")) || []
+}
+let usedIds = JSON.parse(localStorage.getItem("usedIds")) || []
+if( !usedIds.some((id) => id.user === currentUser) &&
+project_isLoggedIn === true){
   for(let i = 1;i<=10;i++){
     usedIds.push({id : i, user: currentUser})
   }
