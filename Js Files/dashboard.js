@@ -2,6 +2,7 @@ if (!localStorage.project_isLoggedIn) {
   window.location.href = "./login.html";
 }
 //DOM
+let searchByNameInput = document.querySelector(".search");
 let add = document.querySelector(".add");
 let fixAddModal = document.querySelector(".fixAdd");
 let logOut = document.querySelector("#logOut");
@@ -21,6 +22,7 @@ let fixOnly = document.querySelector(".fixOnly");
 let darkModeBtn = document.querySelector(".fa-moon")
 let body = document.getElementsByTagName("body")[0]
 let dataIndex;
+let tempName
 let addFixInvalid = document.getElementsByClassName("addFixInvalid");
 let taskNameInput = document.getElementById("taskName");
 let descriptionInput = document.getElementById("description");
@@ -31,6 +33,7 @@ let newDescInput = document.querySelector(".newDesc");
 let currentUser = JSON.parse(localStorage.getItem("project_currentUser"));
 let project = JSON.parse(localStorage.getItem("AllProjects")) || [];
 let project_isLoggedIn = JSON.parse(localStorage.getItem("project_isLoggedIn"));
+let usedIds
 let projectCheck = project.some(function (project) {
   return project.user === currentUser;
 });
@@ -41,15 +44,16 @@ if (!projectCheck && project_isLoggedIn === true) {
       projectName: "Dự án A",
       description: "Mô tả dự án A",
       members: [
-        { id: 1, name: "Thanh", role: "CEO", email: "Thanh@gmail.com" },
+        { id: 1, name: "Thanh", role: "CEO", email: "Thanh@gmail.com", background: "rgb(0, 128, 255)" },
         {
           id: 2,
-          name: "Thanh Fake",
+          name: "Quang",
           role: "Manager",
-          email: "ThanhFake@gmail.com",
+          email: "Quang@gmail.com",
+          background: "rgb(255, 0, 0)"
         },
-        { id: 3, name: "Chung", role: "Janitor", email: "Chung@gmail.com" },
-        { id: 3, name: "Viet", role: "Coder", email: "Viet@gmail.com" },
+        { id: 3, name: "Chung", role: "Janitor", email: "Chung@gmail.com",background:"rgb(255, 215, 0)" },
+        { id: 3, name: "Viet", role: "Coder", email: "Viet@gmail.com",background: "rgb(128, 0, 128)" },
       ],
       user: currentUser,
     },
@@ -58,12 +62,13 @@ if (!projectCheck && project_isLoggedIn === true) {
       projectName: "Dự án B",
       description: "Mô tả dự án B",
       members: [
-        { id: 1, name: "Nam", role: "Designer", email: "Nam@gmail.com" },
+        { id: 1, name: "Nam", role: "Designer", email: "Nam@gmail.com", background: "rgb(0, 128, 255)"  },
         {
           id: 2,
           name: "Linh",
           role: "Manager",
           email: "Linh@gmail.com",
+           background: "rgb(0, 128, 255)" 
         },
       ],
       user: currentUser,
@@ -149,18 +154,24 @@ if (!projectCheck && project_isLoggedIn === true) {
       user: currentUser,
     },
   ]);
+   usedIds = JSON.parse(localStorage.getItem("usedIds")) || []
+  for(let i = 1;i<=10;i++){
+    usedIds.push({id : i, user: currentUser})
+  }
+  localStorage.setItem("usedIds", JSON.stringify(usedIds))
 }
 let tasks = JSON.parse(localStorage.getItem("Project-Tasks")) || [];
 if (
   !tasks.some((task) => task.user === currentUser) &&
   project_isLoggedIn === true
 ) {
+ 
   let newTasks = [
     {
       assignDate: "2025-04-18",
       dueDate: "2025-04-22",
       id: 1,
-      inCharge: "anh Thanh",
+      inCharge: "Thanh",
       priority: "Trung bình",
       progress: "Trễ hạn",
       projectId: 1,
@@ -172,7 +183,7 @@ if (
       assignDate: "2025-04-10",
       dueDate: "2025-04-15",
       id: 2,
-      inCharge: "chị Mai",
+      inCharge: "Quang",
       priority: "Cao",
       progress: "Đúng tiến độ",
       projectId: 1,
@@ -184,7 +195,7 @@ if (
       assignDate: "2025-04-12",
       dueDate: "2025-04-20",
       id: 3,
-      inCharge: "anh Hùng",
+      inCharge: "Viet",
       priority: "Thấp",
       progress: "Có rủi ro",
       projectId: 1,
@@ -196,7 +207,7 @@ if (
       assignDate: "2025-04-08",
       dueDate: "2025-04-14",
       id: 4,
-      inCharge: "chị Hoa",
+      inCharge: "Chung",
       priority: "Trung bình",
       progress: "Đúng tiến độ",
       projectId: 1,
@@ -232,7 +243,7 @@ if (
   tasks = tasks.concat(newTasks);
   localStorage.setItem("Project-Tasks", JSON.stringify(tasks));
 }
-let usedIds = JSON.parse(localStorage.getItem("usedIds")) || [1,2,3,4,5,6,7,8,9,10]
+
 function generateId() {
   let newId;
   do {
@@ -253,6 +264,7 @@ function displayList() {
   renderTable(currentPage);
   renderPagination(totalPages);
   localStorage.setItem("AllProjects", JSON.stringify(project));
+  // localStorage.setItem("usedIds", JSON.stringify(usedIds))
 }
 function renderTable(page) {
   table.innerHTML = `  <tr class="tHead">
@@ -381,6 +393,7 @@ function deleteTask(index) {
   let projectIndex = project.findIndex(
     (p) => p.id === index && p.user === currentUser
   );
+  let pindex = usedIds.findIndex((i) => i.id === project[projectIndex].id && i.user === currentUser)
   tasks = tasks.filter(
     (task) => !(task.projectId === index && task.user === currentUser)
   );
@@ -393,10 +406,23 @@ function deleteTask(index) {
   }
   localStorage.setItem("AllProjects", JSON.stringify(project));
   localStorage.setItem("Project-Tasks", JSON.stringify(tasks));
-  displayList();
+  if(searchByNameInput.value !==""){
+    searchByName(tempName);
+  }else{
+     displayList();
+  }
   modalDelete.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
   activePage(currentPage);
+  usedIds.splice(pindex,1)
+  Swal.fire({
+    icon: "success",
+    title: "Xoá Thành Công!",
+    confirmButtonText: "Đóng",
+    customClass: {
+      confirmButton: "customClose",
+    },
+  });
 }
 function fix(index) {
   let pIndex = project.findIndex(p => p.user === currentUser && p.id === index)
@@ -443,18 +469,31 @@ function fix(index) {
   );
   project[projectIndex].projectName = projectName;
   project[projectIndex].description = description;
-  displayList();
+  if(searchByNameInput.value !==""){
+    searchByName(tempName);
+  }else{
+     displayList();
+  }
   fixOnly.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
   activePage(currentPage);
+  Swal.fire({
+    icon: "success",
+    title: "Sửa Thành Công!",
+    confirmButtonText: "Đóng",
+    customClass: {
+      confirmButton: "customClose",
+    },
+  });
 }
 //phan tim kiem
-let searchByNameInput = document.querySelector(".search");
+
 searchByNameInput.addEventListener("input", function (event) {
   if (searchByNameInput.value === "") {
     displayList();
     activePage(currentPage);
   } else {
+    tempName = searchByNameInput.value
     searchByName(searchByNameInput.value);
   }
 });
@@ -468,6 +507,7 @@ function searchByName(name) {
   renderPagination(Math.ceil(userProjects.length / itemsPerPage));
   renderTable(currentPage);
   activePage(currentPage);
+  localStorage.setItem("usedIds", JSON.stringify(usedIds))
 }
 //add btn
 saveProject.onclick = function () {
@@ -520,6 +560,14 @@ saveProject.onclick = function () {
   fixAddModal.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
   activePage(currentPage);
+  Swal.fire({
+    icon: "success",
+    title: "Thêm Thành Công!",
+    confirmButtonText: "Đóng",
+    customClass: {
+      confirmButton: "customClose",
+    },
+  });
 };
 descriptionInput.onclick = () => {
   descriptionInput.classList.remove("border_invalid");

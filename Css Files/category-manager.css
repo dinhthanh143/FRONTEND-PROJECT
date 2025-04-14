@@ -137,7 +137,9 @@ background-color: #ffffff;
 }
 .userPfp{
     /* border: 2px solid #344054 !important; */
-    background-color: rgb(3, 179, 255);
+    color: white;
+    font-weight: 500;
+    background-color: #d2d2d2;
     width: 40px;
     height: 40px;
     border: none;

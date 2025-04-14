@@ -35,8 +35,7 @@ form.addEventListener("submit", function (event) {
     Swal.fire({
       icon: "error",
       title: "Lỗi",
-      text: "Đăng Nhập Không Thành Công",
-      footer: "Mời Kiểm tra Lại Thông Tin",
+      text: "Mời Kiểm tra Lại Thông Tin",
       confirmButtonText: "Đóng",
       customClass: {
         confirmButton: "customClose",

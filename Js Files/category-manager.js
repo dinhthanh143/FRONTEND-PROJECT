@@ -50,8 +50,8 @@ let fixBtn = document.getElementsByClassName("saveFix")[0];
 let details = document.getElementsByTagName("details");
 let memberListTable = document.querySelector(".memberListTable");
 let listSave = document.querySelector(".listSave");
-let body = document.getElementsByTagName("body")[0]
-let darkModeBtn = document.querySelector(".fa-moon")
+let body = document.getElementsByTagName("body")[0];
+let darkModeBtn = document.querySelector(".fa-moon");
 let dataIndex;
 // Key
 let choosenProject = JSON.parse(localStorage.getItem("SaveChoosenProject"));
@@ -61,8 +61,8 @@ let currentUser = JSON.parse(localStorage.getItem("project_currentUser"));
 let choosenProjectTitle = document.getElementById("choosenProjectTitle");
 let choosenProjectDesc = document.getElementById("choosenProjectDesc");
 let filter = document.getElementById("filter");
-let currentTasks = []
-let managingMembers = []
+let currentTasks = [];
+let managingMembers = [];
 
 let title = project.findIndex(
   (i) => i.id === choosenProject && i.user === currentUser
@@ -71,50 +71,50 @@ choosenProjectTitle.textContent = `${project[title].projectName}`;
 choosenProjectDesc.textContent = `${project[title].description}`;
 //chuc nang loc
 filter.addEventListener("change", function () {
-  if(filter.value === 'priorityUp'){
-   currentTasks.sort((a,b) => a.priorityType - b.priorityType)
-   let tempIndex = 0
-   tasks.forEach((task,index)=>{
-    if (task.projectId == choosenProject && task.user === currentUser){
-      tasks[index] = currentTasks[tempIndex]
-      tempIndex++
-    }
-   })
-  }else if(filter.value === 'priorityDown'){
-    currentTasks.sort((a,b) => b.priorityType - a.priorityType)
-    let tempIndex = 0
-    tasks.forEach((task,index)=>{
-     if (task.projectId == choosenProject && task.user === currentUser){
-       tasks[index] = currentTasks[tempIndex]
-       tempIndex++
-     }
-    })
-   }else if(filter.value === 'nearDueDate'){
-    currentTasks.sort((a,b) => new Date(a.dueDate) - new Date(b.dueDate))
-    let tempIndex = 0
-    tasks.forEach((task,index)=>{
-     if (task.projectId == choosenProject && task.user === currentUser){
-       tasks[index] = currentTasks[tempIndex]
-       tempIndex++
-     }
-    })
-   }else if(filter.value === 'farDueDate'){
-    currentTasks.sort((a,b) => new Date(b.dueDate) - new Date(a.dueDate))
-    let tempIndex = 0
-    tasks.forEach((task,index)=>{
-     if (task.projectId == choosenProject && task.user === currentUser){
-       tasks[index] = currentTasks[tempIndex]
-       tempIndex++
-     }
-    })
-   }
-  displayAll()
+  if (filter.value === "priorityUp") {
+    currentTasks.sort((a, b) => a.priorityType - b.priorityType);
+    let tempIndex = 0;
+    tasks.forEach((task, index) => {
+      if (task.projectId == choosenProject && task.user === currentUser) {
+        tasks[index] = currentTasks[tempIndex];
+        tempIndex++;
+      }
+    });
+  } else if (filter.value === "priorityDown") {
+    currentTasks.sort((a, b) => b.priorityType - a.priorityType);
+    let tempIndex = 0;
+    tasks.forEach((task, index) => {
+      if (task.projectId == choosenProject && task.user === currentUser) {
+        tasks[index] = currentTasks[tempIndex];
+        tempIndex++;
+      }
+    });
+  } else if (filter.value === "nearDueDate") {
+    currentTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    let tempIndex = 0;
+    tasks.forEach((task, index) => {
+      if (task.projectId == choosenProject && task.user === currentUser) {
+        tasks[index] = currentTasks[tempIndex];
+        tempIndex++;
+      }
+    });
+  } else if (filter.value === "farDueDate") {
+    currentTasks.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
+    let tempIndex = 0;
+    tasks.forEach((task, index) => {
+      if (task.projectId == choosenProject && task.user === currentUser) {
+        tasks[index] = currentTasks[tempIndex];
+        tempIndex++;
+      }
+    });
+  }
+  displayAll();
 });
 
 //chuc nang them moi nhiem vu
 addFixBtn.onclick = function () {
   resetInputs();
-  resetTaskInputs()
+  resetTaskInputs();
   addFixTask.classList.add("modal_show");
   overlay.classList.add("overlayToggle");
   saveBtns[1].onclick = function () {
@@ -223,14 +223,22 @@ addFixBtn.onclick = function () {
     displayAll();
     addFixTask.classList.remove("modal_show");
     overlay.classList.remove("overlayToggle");
+    Swal.fire({
+      icon: "success",
+      title: "Thêm Thành Công!",
+      confirmButtonText: "Đóng",
+      customClass: {
+        confirmButton: "customClose",
+      },
+    });
   };
 };
 //chuc nang them member
 let projectIndex = project.findIndex(function (i) {
-  return i.id === choosenProject && i.user === currentUser
+  return i.id === choosenProject && i.user === currentUser;
 });
 showMembersBtn.onclick = function () {
-  managingMembers = []
+  managingMembers = [];
   let memberListRole = document.getElementsByClassName("memberListRole");
   for (let i = 0; i < project[projectIndex].members.length; i++) {
     memberListRole[i].classList.remove("border_invalid");
@@ -239,6 +247,15 @@ showMembersBtn.onclick = function () {
   displayMemberList();
   overlay.classList.add("overlayToggle");
 };
+function generateRandomColor() {
+  let r, g, b;
+  do {
+    r = Math.round(Math.random() * 255);
+    g = Math.round(Math.random() * 255);
+    b = Math.round(Math.random() * 255);
+  } while (r > 200 && g > 200 && b > 200); 
+  return `rgb(${r},${g},${b})`
+}
 function memberListCheck() {
   if (!project[projectIndex].members) {
     project[projectIndex].members = [];
@@ -295,7 +312,8 @@ saveMemberBtn.onclick = function () {
   }
   if (!isValid) return;
   let name = email.split("@")[0];
-  project[projectIndex].members.push({ name, role, email });
+  let background = generateRandomColor()
+  project[projectIndex].members.push({ name, role, email, background });
   displayMemberList();
   addMemberModal.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
@@ -303,6 +321,14 @@ saveMemberBtn.onclick = function () {
   memberEmailInput.classList.remove("border_invalid");
   modalInvalid[1].classList.remove("modal_show");
   memberRoleInput.classList.remove("border_invalid");
+  Swal.fire({
+    icon: "success",
+    title: "Thêm Thành Viên Thành Công!",
+    confirmButtonText: "Đóng",
+    customClass: {
+      confirmButton: "customClose",
+    },
+  });
 };
 displayMemberList();
 function displayMemberList() {
@@ -310,7 +336,9 @@ function displayMemberList() {
   memberList.innerHTML = ``;
   if (project[projectIndex].members.length === 1) {
     memberList.innerHTML += ` <div class="memberContainer">
-    <img src="../Assets/images/User-avatar.svg-removebg-preview.png" class="userPfp" alt="">
+                            <span class="userPfp">${project[
+                              projectIndex
+                            ].members[0].name.slice(0, 1)}</span>  
     <div class="memberInfo">
         <span class="memberName">${project[projectIndex].members[0].name}</span>
         <span class="memberRole">${project[projectIndex].members[0].role}</span>
@@ -319,10 +347,16 @@ function displayMemberList() {
   } else if (project[projectIndex].members.length > 1) {
     for (let i = 0; i < 2; i++) {
       memberList.innerHTML += ` <div class="memberContainer">
-                            <img src="../Assets/images/User-avatar.svg-removebg-preview.png" class="userPfp" alt="">
+                            <span class="userPfp">${project[
+                              projectIndex
+                            ].members[i].name.slice(0, 1)}</span>  
                             <div class="memberInfo">
-                                <span class="memberName">${project[projectIndex].members[i].name}</span>
-                                <span class="memberRole">${project[projectIndex].members[i].role}</span>
+                                <span class="memberName">${
+                                  project[projectIndex].members[i].name
+                                }</span>
+                                <span class="memberRole">${
+                                  project[projectIndex].members[i].role
+                                }</span>
                             </div>
                         </div>`;
     }
@@ -338,9 +372,9 @@ function displayMemberList() {
       memberListTable.innerHTML += `<tr>
                             <td>
                                 <div class="Mlrow">
-                                    <img
-                                    src="../Assets/images/User-avatar.svg-removebg-preview.png"
-                                    class="userPfp" alt>
+                                    <span class="userPfp">${project[
+                              projectIndex
+                            ].members[index].name.slice(0, 1)}</span> 
                                     <div class="memberInfoModal">
                                         <span class="memberNameModal">${member.name}</span>
                                         <span
@@ -356,6 +390,16 @@ function displayMemberList() {
       responsibleInput[0].innerHTML += `<option value="${member.name}">${member.name}</option>`;
     });
   }
+  document.querySelectorAll(".memberContainer .userPfp").forEach((pfp, index) => {
+    if (index < project[projectIndex].members.length) {
+      pfp.style.backgroundColor = project[projectIndex].members[index].background;
+    }
+  });
+  document.querySelectorAll(".memberListTable .userPfp").forEach((pfp, index) => {
+    if (index < project[projectIndex].members.length) {
+      pfp.style.backgroundColor = project[projectIndex].members[index].background;
+    }
+  });
   document.querySelectorAll(".fa-trash-can").forEach((btn) => {
     btn.onclick = function () {
       deleteMember(Number(this.getAttribute("data-index")));
@@ -379,19 +423,19 @@ listSave.onclick = function () {
       icon: "error",
       title: "Lỗi",
       text: "Vai trò không được trống hoặc hơn 13 kí tự",
-      confirmButtonText: 'Đóng',
+      confirmButtonText: "Đóng",
       customClass: {
-        confirmButton: 'customClose'
-      }
+        confirmButton: "customClose",
+      },
     });
-    return
-  };
+    return;
+  }
   displayMemberList();
   memberListModal.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
 };
 function deleteMember(index) {
-  managingMembers.push( project[projectIndex].members[index])
+  managingMembers.push(project[projectIndex].members[index]);
   project[projectIndex].members.splice(index, 1);
   if (project[projectIndex].members.length === 0) {
     memberListModal.classList.remove("modal_show");
@@ -403,7 +447,7 @@ cancelMemberList.onclick = function () {
   while (managingMembers.length > 0) {
     project[projectIndex].members.push(managingMembers.pop());
   }
-    displayMemberList();
+  displayMemberList();
   memberListModal.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
 };
@@ -411,7 +455,7 @@ closeMemberList.onclick = function () {
   while (managingMembers.length > 0) {
     project[projectIndex].members.push(managingMembers.pop());
   }
-    displayMemberList();
+  displayMemberList();
   memberListModal.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
 };
@@ -467,8 +511,8 @@ cancelFixAdd.onclick = function () {
   taskStatusInput[0].value = "";
 };
 addMemberBtn.onclick = function () {
-  memberEmailInput.value =""
-  memberRoleInput.value=""
+  memberEmailInput.value = "";
+  memberRoleInput.value = "";
   addMemberModal.classList.add("modal_show");
   overlay.classList.add("overlayToggle");
 };
@@ -506,7 +550,9 @@ function displayAll() {
   inProgress.innerHTML = ``;
   pending.innerHTML = ``;
   done.innerHTML = ``;
-  currentTasks = tasks.filter(task => task.projectId == choosenProject && task.user === currentUser)
+  currentTasks = tasks.filter(
+    (task) => task.projectId == choosenProject && task.user === currentUser
+  );
   tasks.forEach(function (task, index) {
     if (task.projectId == choosenProject && task.user === currentUser) {
       task.user = currentUser;
@@ -719,12 +765,28 @@ function fix(index) {
   fixBtn.style.display = "none";
   addFixTask.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
+  Swal.fire({
+    icon: "success",
+    title: "Sửa Thành Công!",
+    confirmButtonText: "Đóng",
+    customClass: {
+      confirmButton: "customClose",
+    },
+  });
 }
 function deleteTask(index) {
   tasks.splice(index, 1);
   displayAll();
   modalDelete.classList.remove("modal_show");
   overlay.classList.remove("overlayToggle");
+  Swal.fire({
+    icon: "success",
+    title: "Xoá Thành Công!",
+    confirmButtonText: "Đóng",
+    customClass: {
+      confirmButton: "customClose",
+    },
+  });
 }
 //chuc nang chuyen huong
 let toMyTasks = document.getElementById("myTasks");
@@ -1019,26 +1081,26 @@ taskNameInput[0].addEventListener("focus", function () {
   modalInvalid[2].classList.remove("overlayToggle");
   taskNameInput[0].classList.remove("border_invalid");
 });
-let darkModeToggle = JSON.parse(localStorage.getItem("darkModeToggle"))
-darkModeBtn.onclick = function(){
-  document.documentElement.classList.remove("dark-mode")
-  if(!darkModeToggle){
-    body.classList.add("dark-mode")
-    darkModeToggle = "dark"
-  }else if(darkModeToggle === "dark"){
-    body.classList.remove("dark-mode")
-    darkModeToggle = "light"
-  }else{
-    body.classList.add("dark-mode")
-    darkModeToggle = "dark"
+let darkModeToggle = JSON.parse(localStorage.getItem("darkModeToggle"));
+darkModeBtn.onclick = function () {
+  document.documentElement.classList.remove("dark-mode");
+  if (!darkModeToggle) {
+    body.classList.add("dark-mode");
+    darkModeToggle = "dark";
+  } else if (darkModeToggle === "dark") {
+    body.classList.remove("dark-mode");
+    darkModeToggle = "light";
+  } else {
+    body.classList.add("dark-mode");
+    darkModeToggle = "dark";
   }
-  localStorage.setItem("darkModeToggle", JSON.stringify(darkModeToggle))
-}
-darkModeCheck()
-function darkModeCheck(){
-  if(darkModeToggle === "dark"){
-    body.classList.add("dark-mode")
-  }else{
-    body.classList.remove("dark-mode")
+  localStorage.setItem("darkModeToggle", JSON.stringify(darkModeToggle));
+};
+darkModeCheck();
+function darkModeCheck() {
+  if (darkModeToggle === "dark") {
+    body.classList.add("dark-mode");
+  } else {
+    body.classList.remove("dark-mode");
   }
 }

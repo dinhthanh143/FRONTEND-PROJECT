@@ -69,8 +69,7 @@ form.addEventListener("submit", function (event) {
     Swal.fire({
       icon: "error",
       title: "Lỗi",
-      text: "Đăng Ký Không Thành Công",
-      footer: 'Mời Kiểm tra Lại Thông Tin',
+      text: "Mời Kiểm tra Lại Thông Tin",
       confirmButtonText: 'Đóng',
       customClass: {
         confirmButton: 'customClose'
@@ -87,7 +86,7 @@ form.addEventListener("submit", function (event) {
   Swal.fire({
     title: "Đăng Ký Thành Công ✅",
     html: "Chuyển hướng tới Đăng nhập sau <b></b>s.",
-    timer: 2500,
+    timer: 2000,
     timerProgressBar: true,
     didOpen: () => {
       Swal.showLoading();
